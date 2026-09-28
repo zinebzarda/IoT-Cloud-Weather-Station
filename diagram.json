@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "author": "Rajae - Sujet 12 Station météorologique locale",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -160,
+      "left": -280,
+      "attrs": { "temperature": "24", "humidity": "55" }
+    },
+    {
+      "type": "board-bmp180",
+      "id": "bmp1",
+      "top": 40,
+      "left": -280,
+      "attrs": { "temperature": "24", "pressure": "101325" }
+    },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -160, "left": 260, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_vent",
+      "top": 40,
+      "left": 260,
+      "attrs": { "value": "300", "label": "Vitesse du vent" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_pluie",
+      "top": 220,
+      "left": 260,
+      "attrs": { "value": "0", "label": "Pluie" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -330,
+      "left": -40,
+      "attrs": { "i2cAddress": "0x3c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:D15", "green", [] ],
+    [ "bmp1:VCC", "esp:3V3", "red", [] ],
+    [ "bmp1:GND", "esp:GND.2", "black", [] ],
+    [ "bmp1:SDA", "esp:D21", "blue", [] ],
+    [ "bmp1:SCL", "esp:D22", "yellow", [] ],
+    [ "oled1:VCC", "esp:3V3", "red", [] ],
+    [ "oled1:GND", "esp:GND.1", "black", [] ],
+    [ "oled1:SDA", "esp:D21", "blue", [] ],
+    [ "oled1:SCL", "esp:D22", "yellow", [] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [] ],
+    [ "ldr1:GND", "esp:GND.2", "black", [] ],
+    [ "ldr1:AO", "esp:D34", "orange", [] ],
+    [ "pot_vent:VCC", "esp:3V3", "red", [] ],
+    [ "pot_vent:GND", "esp:GND.1", "black", [] ],
+    [ "pot_vent:SIG", "esp:D35", "violet", [] ],
+    [ "pot_pluie:VCC", "esp:3V3", "red", [] ],
+    [ "pot_pluie:GND", "esp:GND.2", "black", [] ],
+    [ "pot_pluie:SIG", "esp:D32", "cyan", [] ]
+  ],
+  "dependencies": {}
+}
